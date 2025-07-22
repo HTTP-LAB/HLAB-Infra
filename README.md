@@ -7,3 +7,11 @@ HTTP 버전 별 차이점을 비교해보는 레포지토리
 3. Docker 설치
 4. Docker-Compose 설치
 5. `sudo docker-compose -f docker-compose.yml up --buld -d` 실행
+
+## URL
+### HTTP/1.1
+- https://localhost:4000/api
+### HTTP/2/0
+- https://localhost:4001/api
+### HTTP/3.0
+- https://localhost:4002/api
