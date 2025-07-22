@@ -2,45 +2,52 @@
 version: '3.8'
 
 services:
-  http1express:
+  express:
     build:
-      context: ./http1express
+      context: ./express
       dockerfile: Dockerfile
-    container_name: http1-express-app
+    container_name: express-be
     ports:
       - 4000:4000
     networks:
       - webnet
-  http2express:
+  http1-nginx:
     build:
-      context: ./http2express      # express/Dockerfile 위치
-      dockerfile: Dockerfile
-    container_name: http2-express-app
-    ports:
-      - 4001:4000
-    networks:
-      - webnet
-  http3express:
-    build:
-      context: ./http3express
-      dockerfile: Dockerfile
-    container_name: http3-express-app
-    ports:
-      - 4002:4000
-    networks:
-      - webnet
-  nginx:
-    build:
-      context: ./nginx
+      context: ./http1
       dockerfile: Dockerfile               # nginx Dockerfile 위치 또는 기존 이미지 사용
-    container_name: nginx-http2
+    container_name: http1-nginx
     depends_on:
-      - http1express
-      - http2express
-      - http3express
+      - express
     ports:
-      - "80:80"             # HTTP
-      - "443:443"           # HTTPS (HTTP/2)
+      - 10443:443              # HTTPS (HTTP/2)
+    # expose:
+    #   - 80
+    networks:
+      - webnet
+  http2-nginx:
+    build:
+      context: ./http2
+      dockerfile: Dockerfile
+    container_name: http2-nginx
+    depends_on:
+      - express
+    ports:
+      - 20443:443               # HTTPS (HTTP/2)
+    # expose:
+    #   - 80
+    networks:
+      - webnet
+  http3-nginx:
+    build:
+      context: ./http3
+      dockerfile: Dockerfile
+    container_name: http3-nginx
+    depends_on:
+      - express
+    ports:
+      - 30443:443              # HTTPS (HTTP/2)
+    # expose:
+    #   - 80
     networks:
       - webnet
 networks:

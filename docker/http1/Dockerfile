@@ -16,4 +16,4 @@ RUN mkdir -p /etc/nginx/ssl && \
 COPY ./static/ /var/www/html/
 
 # NGINX 기본 설정
-COPY ./nginx_http2.conf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf

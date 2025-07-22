@@ -12,7 +12,7 @@ function delay(ms) {
 }
 
 app.get('/api', async (req, res)=>{
-  res.send("hello, I am http1 server")
+  res.send("hello, I am Express server\n\n개발자 도구에서 HTTP 버전을 확인하세요.")
 })
 
 app.get('/api/data', async (req, res) => {
