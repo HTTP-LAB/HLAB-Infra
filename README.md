@@ -10,8 +10,8 @@ HTTP 버전 별 차이점을 비교해보는 레포지토리
 
 ## URL
 ### HTTP/1.1
-- https://localhost:4000/api
+- https://localhost:10443/api
 ### HTTP/2/0
-- https://localhost:4001/api
+- https://localhost:20443/api
 ### HTTP/3.0
-- https://localhost:4002/api
+- https://localhost:30443/api (현재 3.0 버전 미적용)
