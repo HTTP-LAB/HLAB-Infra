@@ -10,8 +10,8 @@ HTTP 버전 별 차이점을 비교해보는 레포지토리
 
 ## URL
 ### HTTP/1.1
-- https://www.httplab.shop:10443/api
+- https://be.httplab.shop:10443/api
 ### HTTP/2/0
-- https://www.httplab.shop:20443/api
+- https://be.httplab.shop:20443/api
 ### HTTP/3.0
-- https://www.httplab.shop:30443/api (현재 3.0 버전 미적용)
+- https://be.httplab.shop:30443/api (현재 3.0 버전 미적용)
