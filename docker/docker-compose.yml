@@ -9,6 +9,8 @@ services:
     container_name: express-be
     ports:
       - 4000:4000
+    volumes:
+    - /etc/letsencrypt/live/be.httplab.shop:/etc/letsencrypt/live/be.httplab.shop:ro
     networks:
       - webnet
   http1-nginx:
@@ -20,6 +22,8 @@ services:
       - express
     ports:
       - 10443:443              # HTTPS (HTTP/2)
+    volumes:
+    - /etc/letsencrypt/live/be.httplab.shop:/etc/letsencrypt/live/be.httplab.shop:ro
     # expose:
     #   - 80
     networks:
@@ -33,6 +37,8 @@ services:
       - express
     ports:
       - 20443:443               # HTTPS (HTTP/2)
+    volumes:
+    - /etc/letsencrypt/live/be.httplab.shop:/etc/letsencrypt/live/be.httplab.shop:ro
     # expose:
     #   - 80
     networks:
