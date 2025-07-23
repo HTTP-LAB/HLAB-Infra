@@ -50,6 +50,8 @@ services:
     container_name: http3-nginx
     depends_on:
       - express
+    volumes:
+    - /etc/letsencrypt/live/be.httplab.shop:/etc/letsencrypt/live/be.httplab.shop:ro
     ports:
       - 30443:443              # HTTPS (HTTP/2)
     # expose:
