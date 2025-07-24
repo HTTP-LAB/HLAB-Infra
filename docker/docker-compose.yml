@@ -2,15 +2,6 @@
 version: '3.8'
 
 services:
-  express:
-    build:
-      context: ./express
-      dockerfile: Dockerfile
-    container_name: express-be
-    ports:
-      - 4000:4000
-    networks:
-      - webnet
   http1-nginx:
     build:
       context: ./http1
@@ -22,6 +13,8 @@ services:
       - 10443:443              # HTTPS (HTTP/2)
     volumes:
     - /etc/letsencrypt:/etc/letsencrypt:ro
+    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./static:/var/www/html
     # expose:
     #   - 80
     networks:
@@ -37,6 +30,8 @@ services:
       - 20443:443               # HTTPS (HTTP/2)
     volumes:
     - /etc/letsencrypt:/etc/letsencrypt:ro
+    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./static:/var/www/html
     # expose:
     #   - 80
     networks:
@@ -50,6 +45,8 @@ services:
       - express
     volumes:
     - /etc/letsencrypt:/etc/letsencrypt:ro
+    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./static:/var/www/html
     ports:
       - 30443:443              # HTTPS (HTTP/2)
     # expose:
