@@ -7,13 +7,11 @@ services:
       context: ./http1
       dockerfile: Dockerfile               # nginx Dockerfile 위치 또는 기존 이미지 사용
     container_name: http1-nginx
-    depends_on:
-      - express
     ports:
       - 10443:443              # HTTPS (HTTP/2)
     volumes:
     - /etc/letsencrypt:/etc/letsencrypt:ro
-    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./http1/nginx.conf:/etc/nginx/nginx.conf:ro
     - ./static:/var/www/html
     # expose:
     #   - 80
@@ -24,13 +22,11 @@ services:
       context: ./http2
       dockerfile: Dockerfile
     container_name: http2-nginx
-    depends_on:
-      - express
     ports:
       - 20443:443               # HTTPS (HTTP/2)
     volumes:
     - /etc/letsencrypt:/etc/letsencrypt:ro
-    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./http2/nginx.conf:/etc/nginx/nginx.conf:ro
     - ./static:/var/www/html
     # expose:
     #   - 80
@@ -41,11 +37,9 @@ services:
       context: ./http3
       dockerfile: Dockerfile
     container_name: http3-nginx
-    depends_on:
-      - express
     volumes:
     - /etc/letsencrypt:/etc/letsencrypt:ro
-    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./http3/nginx.conf:/etc/nginx/nginx.conf:ro
     - ./static:/var/www/html
     ports:
       - 30443:443              # HTTPS (HTTP/2)
