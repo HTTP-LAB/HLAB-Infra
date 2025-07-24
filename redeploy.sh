@@ -2,6 +2,8 @@
 
 set -e  # 중간에 오류나면 종료
 
+cd ~/HTTP-Version-Test
+
 echo "📦 Git pull 중..."
 git pull origin main
 
@@ -16,4 +18,7 @@ docker network prune -f
 echo "🚀 docker-compose up 시작..."
 docker-compose up -d --build
 
-echo "✅ 완료되었습니다!"
+echo "✅ 도커 컨테이너 재배포 완료되었습니다!"
+
+echo "정적 파일을 가져옵니다."
+./fetch_static.sh
