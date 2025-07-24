@@ -11,7 +11,6 @@ echo "🛑 docker-compose down 중..."
 docker-compose down --volumes --remove-orphans
 
 echo "🧹 Docker 시스템 자원 정리 중..."
-docker system prune -af
 docker volume prune -f
 docker network prune -f
 
