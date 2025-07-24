@@ -21,4 +21,4 @@ docker-compose up -d --build
 echo "✅ 도커 컨테이너 재배포 완료되었습니다!"
 
 echo "정적 파일을 가져옵니다."
-./fetch_static.sh
+sh ../fetch_static.sh
