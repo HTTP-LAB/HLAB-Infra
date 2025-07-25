@@ -36,7 +36,7 @@ services:
     image: macbre/nginx-http3:latest
     container_name: http3-nginx
     volumes:
-    - /etc/letsencrypt:/etc/nginx/ssl/:ro
+    - ../../nginx-certs:/etc/nginx/certs:ro
     - ./http3/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
     - ./static:/var/www/html
     ports:
