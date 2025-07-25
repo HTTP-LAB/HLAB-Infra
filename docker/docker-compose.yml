@@ -17,6 +17,10 @@ services:
     #   - 80
     networks:
       - webnet
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
   http2-nginx:
     build:
       context: ./http2
@@ -32,6 +36,10 @@ services:
     #   - 80
     networks:
       - webnet
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
   http3-nginx:
     image: macbre/nginx-http3:latest
     container_name: http3-nginx
@@ -44,6 +52,10 @@ services:
     - "30443:443/udp"
     networks:
       - webnet
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
 networks:
   webnet:
     driver: bridge
