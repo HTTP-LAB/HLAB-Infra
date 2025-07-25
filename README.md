@@ -1,23 +1,31 @@
 # HTTP-Version-Test
 HTTP 버전 별 차이점을 비교해보는 레포지토리
 
-## 사용법
+
+
+# 사용법
 1. git clone https://github.com/HTTP-LAB/HTTP-Version-Test.git
 2. cd docker
 3. Docker 설치
 4. Docker-Compose 설치
 5. `sudo docker-compose -f docker-compose.yml up --buld -d` 실행
 
-## URL
-### HTTP/1.1
+
+
+# URL
+## HTTP/1.1
 - 기본 페이지 : https://www.httplab.shop:10443/default-template/index.html
 - 최적회된 페이지 : https://www.httplab.shop:10443/optimization-http1/index.html
-### HTTP/2/0
+## HTTP/2/0
 - 기본 페이지 : https://www.httplab.shop:20443/default-template/index.html
 - 최적화된 페이지 : https://www.httplab.shop:20443/optimization-http2/index.html
-### HTTP/3.0
+## HTTP/3.0
 - 기본 페이지 : https://www.httplab.shop:30443/default-template/index.html
 - 최적화된 페이지 : https://www.httplab.shop:30443/optimization-http2/index.html
 
-## 아키텍처
-<img width="700" height="700" alt="image" src="https://github.com/user-attachments/assets/dda75b7c-88c0-43c1-a0b7-e5b129ac18da" />
+
+
+# 아키텍처
+<img width="1054" height="629" alt="image" src="https://github.com/user-attachments/assets/e9543317-d59f-400c-9a31-dff20793df37" />
+
+
