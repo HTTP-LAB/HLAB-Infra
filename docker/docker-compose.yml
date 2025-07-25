@@ -33,13 +33,11 @@ services:
     networks:
       - webnet
   http3-nginx:
-    build:
-      context: ./http3
-      dockerfile: Dockerfile
+    image: macbre/nginx-http3:latest
     container_name: http3-nginx
     volumes:
     - /etc/letsencrypt:/etc/letsencrypt:ro
-    - ./http3/nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./http3/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
     - ./static:/var/www/html
     ports:
       - 30443:443/udp              # HTTPS (HTTP/3)

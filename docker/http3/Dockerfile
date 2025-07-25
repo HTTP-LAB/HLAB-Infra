@@ -1,48 +1,26 @@
-# https://nginx.org/en/linux_packages.html#Alpine
-# Use an official Alpine base image
-FROM alpine:latest
+# 1단계: 빌드
+FROM alpine:3.18 as builder
 
-# Install prerequisites
 RUN apk add --no-cache \
-    openssl \
-    curl \
-    ca-certificates
+    build-base curl git zlib-dev pcre2-dev openssl-dev cmake cargo rust perl linux-headers
 
-# Set up the APK repository for stable or mainline nginx packages
-# Uncomment the appropriate lines for stable or mainline versions
+WORKDIR /src
 
-# Stable version
-RUN printf "%s%s%s%s\n" \
-    "@nginx " \
-    "http://nginx.org/packages/alpine/v" \
-    `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
-    "/main" \
-    | tee -a /etc/apk/repositories
+# quiche 및 nginx 다운로드 & 패치 적용
+RUN git clone --recursive https://github.com/cloudflare/quiche && \
+    cd quiche && \
+    ./utils/docker-build.sh --nginx src
 
-# RUN printf "%s%s%s%s\n" \
-#     "@nginx " \
-#     "http://nginx.org/packages/mainline/alpine/v" \
-#     $(grep -o '^[0-9]+\.[0-9]+' /etc/alpine-release) \
-#     "/main" \
-#     | tee -a /etc/apk/repositories
+# 2단계: 런타임 (경량)
+FROM alpine:3.18
 
-# Import and verify the NGINX signing key
-RUN curl -o /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub && \
-    openssl rsa -pubin -in /tmp/nginx_signing.rsa.pub -text -noout && \
-    mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
+RUN apk add --no-cache openssl
 
-# Install NGINX from the specified repository
-RUN apk add --no-cache nginx@nginx
-RUN apk add nginx-module-image-filter@nginx nginx-module-njs@nginx
+COPY --from=builder /src/quiche/nginx-1.25.3/objs/nginx /usr/sbin/nginx
 
-# Create SSL directory
-RUN mkdir -p /etc/nginx/ssl
-
-# Copy custom configuration files
+# nginx.conf를 프로젝트에서 가져다 사용
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Expose ports for HTTP and HTTPS
-EXPOSE 80 443
+EXPOSE 443/udp 443 80
 
-# Start NGINX
 CMD ["nginx", "-g", "daemon off;"]
