@@ -10,11 +10,11 @@ HTTP 버전 별 차이점을 비교해보는 레포지토리
 
 ## URL
 ### HTTP/1.1
-- https://www.httplab.shop:10443/default-template/index.html
-- https://www.httplab.shop:10443/optimization-http1/index.html
+- 기본 페이지 : https://www.httplab.shop:10443/default-template/index.html
+- 최적회된 페이지 : https://www.httplab.shop:10443/optimization-http1/index.html
 ### HTTP/2/0
-- https://www.httplab.shop:20443/default-template/index.html
-- https://www.httplab.shop:20443/optimization-http2/index.html
+- 기본 페이지 : https://www.httplab.shop:20443/default-template/index.html
+- 최적화된 페이지 : https://www.httplab.shop:20443/optimization-http2/index.html
 ### HTTP/3.0
-- https://www.httplab.shop:30443/default-template/index.html (현재 3.0 버전 미적용)
-- https://www.httplab.shop:30443/optimization-http2/index.html
+- 기본 페이지 : https://www.httplab.shop:30443/default-template/index.html
+- 최적화된 페이지 : https://www.httplab.shop:30443/optimization-http2/index.html
