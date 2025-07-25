@@ -42,7 +42,8 @@ services:
     - ./http3/nginx.conf:/etc/nginx/nginx.conf:ro
     - ./static:/var/www/html
     ports:
-      - 30443:443              # HTTPS (HTTP/2)
+      - 30443:443/udp              # HTTPS (HTTP/3)
+      - 30444:443/tcp
     # expose:
     #   - 80
     networks:
