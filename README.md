@@ -18,3 +18,6 @@ HTTP 버전 별 차이점을 비교해보는 레포지토리
 ### HTTP/3.0
 - 기본 페이지 : https://www.httplab.shop:30443/default-template/index.html
 - 최적화된 페이지 : https://www.httplab.shop:30443/optimization-http2/index.html
+
+## 아키텍처
+<img width="700" height="700" alt="image" src="https://github.com/user-attachments/assets/dda75b7c-88c0-43c1-a0b7-e5b129ac18da" />
