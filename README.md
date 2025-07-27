@@ -43,7 +43,7 @@ server {
         # http/3
         listen 443 quic reuseport;
 
-        # http/2 and http/1.1
+        # http/2 또는 http/1.1
         listen 443 ssl;
         http2 on;
 
@@ -52,13 +52,13 @@ server {
 
         ssl_protocols TLSv1.2 TLSv1.3;
 
-        # 0-RTT QUIC connection resumption
+        # 0-RTT QUIC
         ssl_early_data on;
 
-        # Add Alt-Svc header to negotiate HTTP/3.
+        # HTTP/3.0 정보 (30443 포트로 h3 사용가능)
         add_header alt-svc 'h3=":30443"; ma=86400';
 
-        # Sent when QUIC was used
+        # QUIC이 사용될 때 추가되는 헤더
         add_header QUIC-Status $http3;
 
         root /var/www/html;
